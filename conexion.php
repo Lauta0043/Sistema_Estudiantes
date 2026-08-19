@@ -1,23 +1,18 @@
 <?php
 
-required_once__DIR__.'/config/database.php';
+//config/database.php
 
-//conecta
-$conn = new mysqli(
-	DB_HOST,
-	DB_USER,
-	DB_PASS,
-	DB_NAME
-);
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+define('DB_NAME', 'sistema_estudiantes');
 
-//verifica si funciona
-if ($conn->connect_error){
-
-	die("Error de conexión: " . $con->connect_error);
-
+function getConnection() {
+    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    if ($conn->connect_error) {
+        die("Conexión fallida: " . $conn->connect_error);
+    }
+    $conn->set_charset("utf8mb4");
+    return $conn;
 }
-
-//importante: configurr el charset
-$conn->set_charset('utf8mb4');
-
 ?>
